@@ -1,0 +1,386 @@
+/* ===================================================================
+   Hamish Williams (hamishw.com) 1:1 Design System & Styles
+   =================================================================== */
+
+/* Left Fixed Vertical Navbar Item */
+.vertical-nav-item {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-orientation: mixed;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #888888;
+  letter-spacing: 0.04em;
+  transition: all 0.25s ease;
+  padding: 8px 0;
+  display: block;
+}
+
+.vertical-nav-item:hover,
+.vertical-nav-item.active {
+  color: #ffffff;
+  transform: rotate(180deg) translateY(2px);
+}
+
+/* Top-Right Theme Toggle Box (Exact to Reference Screenshot) */
+.theme-toggle-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 38px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.theme-toggle-box:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: scale(1.05);
+}
+
+/* Hero Typography (Exact to Reference Screenshot) */
+.hero-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: #888888;
+  text-transform: uppercase;
+}
+
+.hero-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.hero-title-static {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.85rem, 4.5vw, 3.8rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.hero-title-line {
+  flex: 1;
+  max-width: 320px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 6px;
+}
+
+.hero-title-rotating {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.85rem, 4.5vw, 3.8rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.hero-title-rotating .plus {
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.hero-title-rotating .rotating-word {
+  color: #ffffff;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* Mouse Scroll Indicator Pill */
+.mouse-scroll-pill {
+  width: 22px;
+  height: 38px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.mouse-scroll-dot {
+  width: 3px;
+  height: 7px;
+  background-color: #ffffff;
+  border-radius: 9999px;
+  animation: mouseScroll 2s ease-in-out infinite;
+}
+
+@keyframes mouseScroll {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+/* Primary Button with Hamish Cyberpunk Glow */
+.hw-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.5rem;
+  background-color: #00F0FF;
+  color: #111111;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+}
+
+.hw-btn-primary:hover {
+  background-color: #ffffff;
+  color: #111111;
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.7);
+}
+
+/* Secondary Button with Border */
+.hw-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+}
+
+.hw-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.5);
+  color: #00F0FF;
+  transform: translateY(-2px);
+}
+
+/* Google Antigravity Interactive Particle Canvas */
+#antigravity-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Three.js Background Canvas */
+#webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* Mobile Drawer */
+#mobile-drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 3D Perspective Device Mockup Container */
+.perspective-container {
+  perspective: 1200px;
+}
+
+/* 3D Laptop Mockup */
+.laptop-device {
+  width: 90%;
+  max-width: 490px;
+  transform-style: preserve-3d;
+  transform: rotateY(-10deg) rotateX(7deg) rotateZ(-1deg);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.laptop-device:hover {
+  transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1.03);
+}
+
+.laptop-screen {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: #0c0c0c;
+  border-radius: 12px 12px 0 0;
+  border: 10px solid #1c1c1c;
+  border-bottom: 8px solid #1c1c1c;
+  overflow: hidden;
+  position: relative;
+}
+
+.laptop-camera {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #333333;
+  border-radius: 50%;
+  z-index: 20;
+}
+
+.laptop-base {
+  width: 114%;
+  margin-left: -7%;
+  height: 14px;
+  background: linear-gradient(180deg, #2a2a2a 0%, #151515 100%);
+  border-radius: 0 0 16px 16px;
+  border-top: 1px solid #3d3d3d;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+}
+
+.laptop-notch {
+  width: 64px;
+  height: 5px;
+  background-color: #111111;
+  border-radius: 0 0 6px 6px;
+  margin: 0 auto;
+}
+
+/* 3D Phone Mockup */
+.phone-device {
+  width: 250px;
+  aspect-ratio: 9 / 19.5;
+  background-color: #0c0c0c;
+  border-radius: 36px;
+  border: 10px solid #222222;
+  overflow: hidden;
+  position: relative;
+  transform: rotateY(-12deg) rotateX(6deg) rotateZ(2deg);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phone-device:hover {
+  transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(1.05);
+}
+
+.phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 16px;
+  background-color: #111111;
+  border-radius: 12px;
+  z-index: 20;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #242424;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00F0FF;
+}
+
+/* Light Mode Overrides (matching white background of https://antigravity.google/oauth-callback) */
+html:not(.dark) body {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+html:not(.dark) .hero-title-static,
+html:not(.dark) .hero-title-rotating,
+html:not(.dark) .hero-title-rotating .plus,
+html:not(.dark) .hero-title-rotating .rotating-word {
+  color: #111111;
+}
+
+html:not(.dark) .hero-title-line {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+html:not(.dark) .theme-toggle-box {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #111111;
+}
+
+html:not(.dark) .theme-toggle-box span {
+  color: #111111 !important;
+}
+
+html:not(.dark) aside {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+html:not(.dark) aside svg {
+  color: #111111;
+}
+
+html:not(.dark) .vertical-nav-item {
+  color: #666666;
+}
+
+html:not(.dark) .vertical-nav-item:hover,
+html:not(.dark) .vertical-nav-item.active {
+  color: #111111;
+}
+
+html:not(.dark) h2,
+html:not(.dark) h3 {
+  color: #111111;
+}
+
+html:not(.dark) footer {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #666666;
+}

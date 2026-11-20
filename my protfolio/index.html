@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jayanta Barui // Web Designer &amp; Shopify Developer</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Google Fonts: Inter, IBM Plex Mono & Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            hw: {
+              black: '#111111',
+              dark: '#141414',
+              surface: '#181818',
+              card: '#1e1e1e',
+              border: 'rgba(255, 255, 255, 0.1)',
+              borderHover: 'rgba(255, 255, 255, 0.25)',
+              accent: '#00F0FF',
+              neon: '#00E599',
+              muted: '#888888',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+            jp: ['"Noto Sans JP"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Three.js (For WebGL Antigravity Simulation & Shaders) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-hw-black text-white font-sans antialiased overflow-x-hidden selection:bg-hw-accent selection:text-hw-black">
+
+  <!-- ===================================================================
+       Official Google Antigravity Interactive Vector-Field Background Canvas
+       =================================================================== -->
+  <canvas id="antigravity-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Ambient Grid Mesh -->
+  <div class="fixed inset-0 pointer-events-none z-[1] bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]"></div>
+
+
+  <!-- ===================================================================
+       LEFT FIXED VERTICAL NAVBAR (Exact Hamish Williams Signature Nav)
+       =================================================================== -->
+  <aside class="fixed top-0 left-0 bottom-0 w-16 sm:w-20 z-50 hidden md:flex flex-col justify-between items-center py-8 border-r border-white/[0.08] bg-hw-black/60 backdrop-blur-md">
+    
+    <!-- Top: Monogram Logo (JB) -->
+    <a href="#intro" class="group flex flex-col items-center" aria-label="Home" title="Jayanta Barui">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center font-mono font-black text-sm tracking-tighter bg-white/[0.06] border border-white/15 text-white group-hover:text-hw-accent group-hover:border-hw-accent/60 transition-all">
+        JB
+      </div>
+    </a>
+
+    <!-- Center: Vertical Navigation Links -->
+    <nav class="flex flex-col items-center gap-10 my-auto">
+      <a href="#projects" class="vertical-nav-item">Projects</a>
+      <a href="#experience" class="vertical-nav-item">Experience</a>
+      <a href="#details" class="vertical-nav-item">Resume</a>
+      <a href="#contact" class="vertical-nav-item">Contact</a>
+    </nav>
+
+    <!-- Bottom: Stacked Social / Direct Contact Icons -->
+    <div class="flex flex-col items-center gap-5 text-hw-muted">
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/jayanta-barui" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="LinkedIn Profile">
+        <i data-lucide="linkedin" class="w-4 h-4"></i>
+      </a>
+      <!-- GitHub -->
+      <a href="https://github.com/jayanta26" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" title="GitHub (jayanta26)">
+        <i data-lucide="github" class="w-4 h-4"></i>
+      </a>
+      <!-- WhatsApp -->
+      <a href="https://wa.me/916296314279" target="_blank" rel="noopener noreferrer" class="hover:text-hw-neon transition-colors" title="WhatsApp (+91 6296314279)">
+        <i data-lucide="message-circle" class="w-4 h-4"></i>
+      </a>
+      <!-- Email -->
+      <a href="mailto:jayantabarui26@gmail.com" class="hover:text-hw-accent transition-colors" title="Email Jayanta">
+        <i data-lucide="mail" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </aside>
+
+
+  <!-- ===================================================================
+       TOP RIGHT THEME TOGGLE BUTTON (Exact Hamish Williams Box)
+       =================================================================== -->
+  <div class="fixed top-6 sm:top-8 right-6 sm:right-10 z-50">
+    <button id="theme-toggle-btn" class="theme-toggle-box" aria-label="Toggle Theme">
+      <span class="text-base text-white/90">☾</span>
+    </button>
+  </div>
+
+  <!-- Mobile Top Header (For screens under 768px) -->
+  <header class="md:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between px-6 py-4 bg-hw-black/90 backdrop-blur-md border-b border-white/10">
+    <a href="#intro" class="text-white font-bold text-lg font-mono">JB // Jayanta</a>
+    <button id="mobile-toggle-btn" class="p-2 text-white">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-hw-black/95 backdrop-blur-2xl flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-all duration-300 md:hidden font-mono">
+    <a href="#intro" class="mobile-item text-2xl tracking-widest uppercase hover:text-hw-accent transition-colors">Intro</a>
+    <a href="#projects" class="mobile-item text-2xl tracking-widest uppercase hover:text-hw-accent transition-colors">Projects</a>
+    <a href="#experience" class="mobile-item text-2xl tracking-widest uppercase hover:text-hw-accent transition-colors">Experience</a>
+    <a href="#details" class="mobile-item text-2xl tracking-widest uppercase hover:text-hw-accent transition-colors">Resume</a>
+    <a href="#contact" class="mobile-item text-2xl tracking-widest uppercase text-hw-accent hover:text-white transition-colors">Contact</a>
+  </div>
+
+
+  <!-- ===================================================================
+       MAIN CONTENT WRAPPER (Padded left to accommodate the vertical navbar)
+       =================================================================== -->
+  <main class="md:pl-16 sm:md:pl-20 relative z-10">
+
+    <!-- ===================================================================
+         Section 01: Hero / Banner (With Editorial Standing Portrait on Right)
+         =================================================================== -->
+    <section id="intro" class="relative min-h-screen flex items-center px-8 sm:px-14 lg:px-20 pt-28 pb-20 max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
+        
+        <!-- Left Column: Bio, Rotating Heading & CTAs -->
+        <div class="lg:col-span-7 flex flex-col justify-center">
+          
+          <!-- Upper Author Label -->
+          <div class="hero-label mb-5 flex items-center gap-3">
+            <span>JAYANTA BARUI</span>
+            <span class="w-8 h-px bg-white/20"></span>
+            <span class="text-hw-accent text-xs">4.6+ YEARS EXP</span>
+          </div>
+
+          <!-- Main Headline with Horizontal Divider Line & Cycling Decoder -->
+          <div class="hero-title-wrapper mb-8">
+            <!-- Row 1: Designer —————————— -->
+            <div class="hero-title-row">
+              <span class="hero-title-static">Designer</span>
+              <span class="hero-title-line"></span>
+            </div>
+
+            <!-- Row 2: + Shopify Developer / + Web Designer (Cycling Decoder, No-Wrap) -->
+            <div class="hero-title-rotating whitespace-nowrap">
+              <span class="plus text-white">+</span>
+              <span id="discipline-text" class="rotating-word text-white whitespace-nowrap">Shopify Developer</span>
+            </div>
+          </div>
+
+          <!-- Professional Summary from CV -->
+          <p class="font-mono text-sm sm:text-base text-hw-muted leading-relaxed max-w-xl mb-6">
+            Creative &amp; detail-oriented <span class="text-white font-medium">Web Designer &amp; Shopify Developer</span> with 4.6+ years of experience designing responsive websites and high-converting Shopify stores. Skilled in HTML, CSS, JavaScript, Shopify Liquid, and converting Figma designs into pixel-perfect code.
+          </p>
+
+          <!-- Quick Badges from CV -->
+          <div class="flex flex-wrap items-center gap-2.5 font-mono text-[11px] text-white/80 mb-8">
+            <span class="px-3 py-1 rounded-md bg-white/[0.04] border border-white/10 flex items-center gap-1.5">
+              <i data-lucide="briefcase" class="w-3.5 h-3.5 text-hw-accent"></i>
+              Webskitters Technology (4.6 Yrs)
+            </span>
+            <span class="px-3 py-1 rounded-md bg-white/[0.04] border border-white/10 flex items-center gap-1.5">
+              <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-hw-neon"></i>
+              Shopify &amp; Liquid
+            </span>
+            <span class="px-3 py-1 rounded-md bg-white/[0.04] border border-white/10 flex items-center gap-1.5">
+              <i data-lucide="figma" class="w-3.5 h-3.5 text-hw-accent"></i>
+              Figma to Web
+            </span>
+            <span class="px-3 py-1 rounded-md bg-white/[0.04] border border-white/10 flex items-center gap-1.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-hw-muted"></i>
+              Kolkata, India
+            </span>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#projects" class="hw-btn-primary">
+              <span>View Projects</span>
+              <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            </a>
+            <a href="#details" class="hw-btn-secondary">
+              <span>View Full CV</span>
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+            </a>
+            <a href="tel:6296314279" class="hw-btn-secondary hidden sm:inline-flex">
+              <span>Call: 6296314279</span>
+              <i data-lucide="phone" class="w-4 h-4 text-hw-neon"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Editorial Standing Portrait (NO BOX CARD FRAME) -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end relative group">
+          
+          <!-- Subtle ambient cyan / emerald backlight glow directly behind portrait -->
+          <div class="absolute -inset-6 bg-gradient-to-tr from-hw-accent/20 via-hw-neon/15 to-transparent rounded-full blur-3xl -z-10 opacity-70 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+          <!-- Editorial Portrait Container -->
+          <div class="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px] transition-transform duration-700 ease-out group-hover:scale-[1.02]">
+            
+            <!-- Top Minimal Mono Label (Hamish Williams aesthetic) -->
+            <div class="flex items-center justify-between font-mono text-[10px] text-hw-muted tracking-widest uppercase mb-2 px-1">
+              <span class="flex items-center gap-1.5 text-hw-accent">
+                <span class="w-1.5 h-1.5 rounded-full bg-hw-neon animate-pulse"></span>
+                PORTRAIT // JAYANTA BARUI
+              </span>
+              <span>22.65°N 88.38°E</span>
+            </div>
+
+            <!-- Portrait Image with seamless bottom gradient fade (Half-Body Cropped Portrait) -->
+            <div class="relative w-full aspect-[4/4.5] overflow-hidden rounded-2xl [mask-image:linear-gradient(to_bottom,black_86%,transparent_100%)]">
+              <img src="assets/images/jayanta-half.jpg" alt="Jayanta Barui - Half Portrait" class="w-full h-full object-cover object-center filter contrast-[1.03] brightness-[1.02] group-hover:contrast-105 transition-all duration-700">
+              
+              <!-- Soft ambient bottom vignette -->
+              <div class="absolute inset-0 bg-gradient-to-t from-hw-black via-transparent to-transparent opacity-50"></div>
+            </div>
+
+            <!-- Minimal Mono Caption below portrait (Clean, no card box) -->
+            <div class="mt-3 flex items-center justify-between px-2 font-mono text-xs text-hw-muted">
+              <div class="flex items-center gap-2">
+                <span class="text-white font-medium">Jayanta Barui</span>
+                <span class="text-hw-accent text-[11px]">// 4.6+ Yrs Exp</span>
+              </div>
+              <a href="https://wa.me/916296314279" target="_blank" rel="noopener noreferrer" class="text-hw-neon hover:text-white transition-colors flex items-center gap-1 text-[11px]" title="Chat on WhatsApp">
+                <span>WhatsApp</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Center: Animated Mouse Scroll Indicator (Exact Hamish Pill) -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none">
+        <div class="mouse-scroll-pill">
+          <div class="mouse-scroll-dot"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         Section 02: Projects Showcase (5 Real Client Projects from Jayanta's CV)
+         =================================================================== -->
+    <section id="projects" class="relative py-32 px-8 sm:px-14 lg:px-20 max-w-6xl mx-auto border-t border-white/10">
+      
+      <!-- Section Header -->
+      <div class="flex items-end justify-between border-b border-white/10 pb-8 mb-24">
+        <div>
+          <div class="font-mono text-xs text-hw-accent tracking-widest uppercase mb-2">01 // Selected Work</div>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight uppercase">Featured Projects</h2>
+        </div>
+        <div class="hidden sm:block font-mono text-xs text-hw-muted text-right">
+          2021 — PRESENT<br>
+          SHOPIFY + WEB DESIGN
+        </div>
+      </div>
+
+      <div class="space-y-36">
+
+        <!-- PROJECT 01: Brook37 The Atelier (Luxury Fine Tea Brand) -->
+        <article class="flex flex-col lg:flex-row items-center gap-14 lg:gap-16 group">
+          <div class="flex-1 max-w-xl">
+            <div class="flex items-center gap-3 font-mono text-xs text-hw-accent tracking-wider uppercase mb-3">
+              <span>01 / 05</span>
+              <span class="w-4 h-px bg-hw-accent"></span>
+              <span>Shopify Plus &amp; Luxury E-Commerce</span>
+            </div>
+
+            <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white mb-4 group-hover:text-hw-accent transition-colors decoder-heading" data-text="Brook37 The Atelier">
+              Brook37 The Atelier
+            </h3>
+
+            <p class="font-mono text-sm text-hw-muted leading-relaxed mb-6">
+              Bespoke luxury tea atelier and premium wellness e-commerce brand based in the USA. Designed and developed custom Shopify Liquid storefront with sensory product notes, customized gift-box bundle builder, interactive tasting notes selector, and blazing-fast checkout experience.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 py-4 border-y border-white/10 mb-8 font-mono text-xs">
+              <div>
+                <span class="text-hw-muted block text-[10px] uppercase">Role</span>
+                <span class="text-white font-semibold">Web Designer &amp; Shopify Developer</span>
+              </div>
+              <div>
+                <span class="text-hw-muted block text-[10px] uppercase">Tech Stack</span>
+                <span class="text-white font-semibold">Shopify Plus, Liquid, SCSS, JS</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+              <a href="https://brook37.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-hw-accent hover:text-white transition-colors group/link">
+                <span>Visit Live Store</span>
+                <i data-lucide="external-link" class="w-4 h-4 transition-transform group-hover/link:translate-x-1"></i>
+              </a>
+              <span class="font-mono text-xs text-hw-muted">brook37.com</span>
+            </div>
+          </div>
+
+          <!-- 3D Perspective Laptop Mockup -->
+          <div class="w-full lg:w-[540px] h-[340px] sm:h-[400px] flex items-center justify-center relative perspective-container">
+            <div class="laptop-device group-hover:rotate-x-0 group-hover:rotate-y-0 transition-all duration-700">
+              <div class="laptop-screen shadow-device-3d">
+                <div class="laptop-camera"></div>
+                <img src="assets/images/case-edtech.png" alt="Brook37 The Atelier Store Mockup" class="w-full h-full object-cover">
+              </div>
+              <div class="laptop-base">
+                <div class="laptop-notch"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- PROJECT 02: Myracle UK (Organic Mushroom Coffee & Wellness Brand) -->
+        <article class="flex flex-col lg:flex-row-reverse items-center gap-14 lg:gap-16 group">
+          <div class="flex-1 max-w-xl">
+            <div class="flex items-center gap-3 font-mono text-xs text-hw-neon tracking-wider uppercase mb-3">
+              <span>02 / 05</span>
+              <span class="w-4 h-px bg-hw-neon"></span>
+              <span>Shopify D2C &amp; Organic Health</span>
+            </div>
+
+            <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white mb-4 group-hover:text-hw-neon transition-colors decoder-heading" data-text="Myracle UK — Organic Drinks">
+              Myracle UK — Organic Drinks
+            </h3>
+
+            <p class="font-mono text-sm text-hw-muted leading-relaxed mb-6">
+              Vibrant UK-based health &amp; wellness direct-to-consumer brand specializing in organic mushroom coffee and adaptogenic blends. Engineered high-converting mobile-first Shopify theme, seamless recurring subscription funnel (Recharge), animated ingredient benefit matrices, and optimized AJAX cart drawer.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 py-4 border-y border-white/10 mb-8 font-mono text-xs">
+              <div>
+                <span class="text-hw-muted block text-[10px] uppercase">Role</span>
+                <span class="text-white font-semibold">Shopify Developer &amp; UI/UX</span>
+              </div>
+              <div>
+                <span class="text-hw-muted block text-[10px] uppercase">Tech Stack</span>
+                <span class="text-white font-semibold">Shopify, Liquid, Subscriptions, CSS3</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+              <a href="https://myracle.co.uk/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-hw-neon hover:text-white transition-colors group/link">
+                <span>Visit Live Store</span>
+                <i data-lucide="external-link" class="w-4 h-4 transition-transform group-hover/link:translate-x-1"></i>
+              </a>
+              <span class="font-mono text-xs text-hw-muted">myracle.co.uk</span>
+            </div>
+          </div>
+
+          <!-- 3D Perspective Phone Mockup -->
+          <div class="w-full lg:w-[540px] h-[340px] sm:h-[400px] flex items-center justify-center relative perspective-container">
+            <div class="phone-device shadow-device-3d group-hover:scale-105 transition-all duration-700">
+              <div class="phone-notch"></div>
+              <img src="assets/images/case-pharma.png" alt="Myracle UK Mobile Store Mockup" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </article>
+
+
+        <!-- PROJECT 03: Kränzle Pump (Commercial Cleaning & High-Pressure Systems) -->
+        <article class="flex flex-col lg:flex-row items-center gap-14 lg:gap-16 group">
+          <div class="flex-1 max-w-xl">
+            <div class="flex items-center gap-3 font-mono text-xs text-hw-accent tracking-wider uppercase mb-3">
+              <span>03 / 05</span>
+              <span class="w-4 h-px bg-hw-accent"></span>
+              <span>Shopify Commercial &amp; Pressure Washers</span>
+            </div>
+
+            <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white mb-4 group-hover:text-hw-accent transition-colors decoder-heading" data-text="Kränzle Pump — Machinery">
+              Kränzle Pump — Machinery
+            </h3>
+
+            <p class="font-mono text-sm text-hw-muted leading-relaxed mb-6">
+              High-performance industrial pressure cleaning machinery and pump systems catalog. Architected robust commercial Shopify storefront with technical specification tables, spare parts schematic navigation, heavy equipment quotation inquiry workflows, and responsive multi-tiered product catalogs.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 py-4 border-y border-white/10 mb-8 font-mono text-xs">
+              <div>
+                <span class="text-hw-muted block text-[10px] uppercase">Role</span>
+                <span class="text-white font-semibold">Frontend Web Designer &amp; Shopify Dev</span>
+              </div>
+              <div>
+                <span class="text-hw-muted block text-[10px] uppercase">Tech Stack</span>
+                <span class="text-white font-semibold">Shopify, Liquid, Bootstrap, UI/UX</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+              <a href="https://kranzle-pump.myshopify.com/?pb=0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase text-hw-accent hover:text-white transition-colors group/link">
+                <span>Visit Storefront</span>
+                <i data-lucide="external-link" class="w-4 h-4 transition-transform group-hover/link:translate-x-1"></i>
+              </a>
+              <span class="font-mono text-xs text-hw-muted">kranzle-pump.myshopify.com</span>
+            </div>
+          </div>
+
+          <!-- 3D Perspective Laptop Mockup -->
+          <div class="w-full lg:w-[540px] h-[340px] sm:h-[400px] flex items-center justify-center relative perspective-container">
+            <div class="laptop-device group-hover:rotate-x-0 group-hover:rotate-y-0 transition-all duration-700">
+              <div class="laptop-screen shadow-device-3d">
+                <div class="laptop-camera"></div>
+                <img src="assets/images/case-fintech.png" alt="Kränzle Pump Store Mockup" class="w-full h-full object-cover">
+              </div>
+              <div class="laptop-base">
+                <div class="laptop-notch"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- PROJECT 04 & 05: Artisan Carat & Amarra (Dual Grid Showcase) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+          
+          <!-- Artisan Carat (Fine Jewelry Store) -->
+          <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-hw-accent/40 transition-all group flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-mono text-xs text-hw-accent mb-4">
+                <span>04 / 05 // LUXURY JEWELRY</span>
+                <i data-lucide="gem" class="w-4 h-4"></i>
+              </div>
+              <h4 class="text-2xl font-bold uppercase text-white mb-3 group-hover:text-hw-accent transition-colors">
+                Artisan Carat — Fine Jewelry
+              </h4>
+              <p class="font-mono text-xs text-hw-muted leading-relaxed mb-6">
+                High-end luxury jewelry e-commerce storefront. Designed and engineered customized Shopify Liquid sections, interactive mega navigation, advanced product filtering matrices, and seamless checkout flows.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs">
+              <span class="text-hw-muted">Shopify, Liquid, SCSS</span>
+              <a href="https://artisancarat.com" target="_blank" rel="noopener noreferrer" class="text-hw-accent hover:underline flex items-center gap-1.5">
+                <span>artisancarat.com</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Amarra (Designer Evening Dresses) -->
+          <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-hw-neon/40 transition-all group flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between font-mono text-xs text-hw-neon mb-4">
+                <span>05 / 05 // DESIGNER GOWNS</span>
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </div>
+              <h4 class="text-2xl font-bold uppercase text-white mb-3 group-hover:text-hw-neon transition-colors">
+                Amarra — Evening Dresses
+              </h4>
+              <p class="font-mono text-xs text-hw-muted leading-relaxed mb-6">
+                Luxury designer evening and prom gowns brand. Developed high-converting product pages with custom colorway swatch selectors, store locator integration, and responsive lookbooks.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs">
+              <span class="text-hw-muted">Shopify, Bootstrap, Liquid</span>
+              <a href="https://amarra.com" target="_blank" rel="noopener noreferrer" class="text-hw-neon hover:underline flex items-center gap-1.5">
+                <span>amarra.com</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         Section 03: Professional Experience (From Jayanta's CV)
+         =================================================================== -->
+    <section id="experience" class="relative py-32 px-8 sm:px-14 lg:px-20 max-w-6xl mx-auto border-t border-white/10">
+      
+      <div class="flex items-end justify-between border-b border-white/10 pb-8 mb-16">
+        <div>
+          <div class="font-mono text-xs text-hw-accent tracking-widest uppercase mb-2">02 // Career Journey</div>
+          <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight decoder-heading" data-text="Work Experience">
+            Work Experience
+          </h2>
+        </div>
+        <div class="font-mono text-xs text-hw-neon text-right">
+          4.6+ YEARS<br>
+          CONTINUOUS EXP
+        </div>
+      </div>
+
+      <!-- Experience Card: Webskitters Technology Solutions Pvt Ltd -->
+      <div class="p-8 sm:p-12 rounded-3xl bg-white/[0.02] border border-white/15 relative overflow-hidden group hover:border-hw-accent/40 transition-all duration-500">
+        
+        <div class="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-hw-accent/10 via-transparent to-transparent pointer-events-none"></div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <div class="flex items-center gap-3 font-mono text-xs text-hw-accent uppercase tracking-widest mb-1.5">
+              <span>Webskitters Technology Solutions Pvt Ltd</span>
+              <span class="w-2 h-2 rounded-full bg-hw-neon"></span>
+              <span class="text-hw-neon">Full-Time</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-white">
+              Web Designer &amp; Shopify Developer
+            </h3>
+          </div>
+
+          <div class="font-mono text-xs sm:text-right text-hw-muted">
+            <span class="text-white font-semibold block text-sm">Jan 2021 — Present</span>
+            <span>4.6+ Years • Kolkata, India</span>
+          </div>
+        </div>
+
+        <!-- Key Responsibilities & Highlights from CV -->
+        <div class="space-y-4 font-mono text-xs sm:text-sm text-hw-muted leading-relaxed mb-8">
+          <div class="flex items-start gap-3">
+            <span class="text-hw-accent mt-0.5">▹</span>
+            <p><strong class="text-white">Responsive Web Development:</strong> Design and develop responsive websites using HTML, CSS, SCSS, Bootstrap, JavaScript, and jQuery.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-hw-accent mt-0.5">▹</span>
+            <p><strong class="text-white">Shopify Architecture &amp; Custom Liquid:</strong> Develop and customize Shopify themes, sections, and templates as per custom client requirements.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-hw-accent mt-0.5">▹</span>
+            <p><strong class="text-white">Figma/PSD to Code:</strong> Convert Figma and PSD designs into pixel-perfect, fully responsive websites and high-converting Shopify stores.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-hw-accent mt-0.5">▹</span>
+            <p><strong class="text-white">App Integrations &amp; Functionality:</strong> Integrate and configure third-party apps and customize Shopify functionality to enhance store conversion and checkout speed.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-hw-accent mt-0.5">▹</span>
+            <p><strong class="text-white">Cross-Team Collaboration:</strong> Collaborate directly with UI/UX designers, developers, and project managers to deliver high-quality projects on time.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-hw-accent mt-0.5">▹</span>
+            <p><strong class="text-white">Optimization &amp; Standards:</strong> Ensure website speed optimization, cross-browser compatibility, and search engine optimization (SEO) best practices.</p>
+          </div>
+        </div>
+
+        <!-- Skills Used in Role -->
+        <div class="pt-6 border-t border-white/10 flex flex-wrap gap-2 font-mono text-[11px]">
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">Shopify Liquid</span>
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">HTML5 &amp; CSS3</span>
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">SCSS</span>
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">JavaScript (ES6+)</span>
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">jQuery</span>
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">Bootstrap</span>
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">Figma to Web</span>
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">Photoshop</span>
+          <span class="px-3 py-1 rounded bg-white/[0.04] text-white border border-white/10">Speed Optimization</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================================
+         Section 04: Official CV Layout (Exact 1:1 Match to Jayanta's CV Document)
+         =================================================================== -->
+    <section id="details" class="relative py-32 px-8 sm:px-14 lg:px-20 max-w-6xl mx-auto border-t border-white/10">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-white/10 pb-8 mb-12 gap-4">
+        <div>
+          <div class="font-mono text-xs text-hw-accent tracking-widest uppercase mb-2">03 // Official Resume</div>
+          <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight decoder-heading" data-text="Curriculum Vitae">
+            Curriculum Vitae
+          </h2>
+        </div>
+        
+        <!-- Action Buttons for CV -->
+        <div class="flex items-center gap-3">
+          <a href="assets/images/jayanta-cv-updated.jpg" target="_blank" rel="noopener noreferrer" class="hw-btn-primary !py-2.5 !px-4 !text-xs">
+            <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+            <span>View Full Image CV</span>
+          </a>
+          <button onclick="window.print()" class="hw-btn-secondary !py-2.5 !px-4 !text-xs">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Print CV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- EXACT 2-COLUMN CV DOCUMENT LAYOUT (1:1 with Jayanta_Barui_Updated_CV) -->
+      <div class="w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-white text-gray-900 flex flex-col lg:flex-row">
+        
+        <!-- ==========================================
+             LEFT SIDEBAR: Dark Navy (#0e2238)
+             ========================================== -->
+        <aside class="w-full lg:w-[36%] bg-[#0e2238] text-white p-7 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10">
+          
+          <div>
+            <!-- Passport Photo in Blue Frame (Exact CV look) -->
+            <div class="w-36 h-44 mx-auto mb-8 rounded-sm overflow-hidden border-4 border-[#255285] bg-[#1a365d] shadow-lg">
+              <img src="assets/images/jayanta-banner.jpg" alt="Jayanta Barui Headshot" class="w-full h-full object-cover object-top">
+            </div>
+
+            <!-- CONTACT -->
+            <div class="mb-8 border-b border-white/15 pb-6">
+              <h4 class="font-sans font-bold text-xs uppercase tracking-widest text-[#72a3e5] mb-4 flex items-center gap-2">
+                <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                <span>Contact</span>
+              </h4>
+              <div class="space-y-3 text-[11px] font-sans text-gray-300">
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="phone-call" class="w-3.5 h-3.5 text-hw-accent mt-0.5"></i>
+                  <span>6296314279 / 8597826583</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="mail" class="w-3.5 h-3.5 text-hw-accent mt-0.5"></i>
+                  <a href="mailto:jayantabarui26@gmail.com" class="hover:underline text-white">jayantabarui26@gmail.com</a>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-hw-accent mt-0.5"></i>
+                  <span>Belgharia, Nandan Nagar, Basakpara, Kolkata - 700083</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SKILLS WITH PROGRESS SLIDERS (Exact CV Layout) -->
+            <div class="mb-8 border-b border-white/15 pb-6">
+              <h4 class="font-sans font-bold text-xs uppercase tracking-widest text-[#72a3e5] mb-4 flex items-center gap-2">
+                <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                <span>Skills</span>
+              </h4>
+              
+              <div class="space-y-3 text-[11px] font-sans">
+                <!-- HTML -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>HTML</span>
+                    <span class="text-[#72a3e5]">95%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+
+                <!-- CSS / SCSS -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>CSS / SCSS</span>
+                    <span class="text-[#72a3e5]">95%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+
+                <!-- Bootstrap -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>Bootstrap</span>
+                    <span class="text-[#72a3e5]">90%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 90%"></div>
+                  </div>
+                </div>
+
+                <!-- JavaScript -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>JavaScript</span>
+                    <span class="text-[#72a3e5]">85%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+
+                <!-- jQuery -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>jQuery</span>
+                    <span class="text-[#72a3e5]">85%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+
+                <!-- Shopify Development -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>Shopify Development</span>
+                    <span class="text-hw-neon">92%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#10b981] rounded-full" style="width: 92%"></div>
+                  </div>
+                </div>
+
+                <!-- Figma to HTML / Shopify -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>Figma to HTML / Shopify</span>
+                    <span class="text-[#72a3e5]">95%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+
+                <!-- Photoshop -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>Photoshop</span>
+                    <span class="text-[#72a3e5]">80%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 80%"></div>
+                  </div>
+                </div>
+
+                <!-- Responsive Design -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>Responsive Design</span>
+                    <span class="text-[#72a3e5]">95%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+
+                <!-- UI/UX Basics -->
+                <div>
+                  <div class="flex justify-between mb-1 text-gray-200">
+                    <span>UI/UX Basics</span>
+                    <span class="text-[#72a3e5]">85%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-[#1b3a5c] rounded-full overflow-hidden">
+                    <div class="h-full bg-[#3b82f6] rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SOFT SKILLS -->
+            <div class="mb-8 border-b border-white/15 pb-6">
+              <h4 class="font-sans font-bold text-xs uppercase tracking-widest text-[#72a3e5] mb-3 flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span>Soft Skills</span>
+              </h4>
+              <ul class="text-[11px] text-gray-300 space-y-1.5">
+                <li>• Problem Solving</li>
+                <li>• Time Management</li>
+                <li>• Communication</li>
+              </ul>
+            </div>
+
+            <!-- LANGUAGES -->
+            <div>
+              <h4 class="font-sans font-bold text-xs uppercase tracking-widest text-[#72a3e5] mb-3 flex items-center gap-2">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                <span>Languages</span>
+              </h4>
+              <ul class="text-[11px] text-gray-300 space-y-1.5">
+                <li>• Bengali (Native)</li>
+                <li>• English (Professional)</li>
+                <li>• Hindi (Fluent)</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </aside>
+
+
+        <!-- ==========================================
+             RIGHT MAIN COLUMN: Clean White Sheet
+             ========================================== -->
+        <main class="w-full lg:w-[64%] bg-[#ffffff] text-[#1e293b] p-8 sm:p-10 flex flex-col justify-between">
+          
+          <div>
+            
+            <!-- HEADER -->
+            <div class="border-b border-gray-200 pb-6 mb-6">
+              <h1 class="font-sans text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f2439] uppercase mb-1">
+                JAYANTA BARUI
+              </h1>
+              <div class="font-sans text-sm font-semibold text-[#2563eb] mb-4">
+                Web Designer &nbsp;|&nbsp; Shopify Developer
+              </div>
+
+              <!-- Links Row -->
+              <div class="flex flex-wrap items-center gap-4 text-xs font-sans text-gray-600">
+                <span class="flex items-center gap-1.5">
+                  <i data-lucide="globe" class="w-3.5 h-3.5 text-gray-400"></i>
+                  Portfolio: <strong class="text-gray-900">jayantabarui.com</strong>
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <i data-lucide="linkedin" class="w-3.5 h-3.5 text-gray-400"></i>
+                  <a href="https://linkedin.com/in/jayanta-barui" target="_blank" class="hover:text-blue-600 underline">linkedin.com/in/jayanta-barui</a>
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <i data-lucide="github" class="w-3.5 h-3.5 text-gray-400"></i>
+                  <a href="https://github.com/jayanta26" target="_blank" class="hover:text-blue-600 underline">github.com/jayanta26</a>
+                </span>
+              </div>
+            </div>
+
+            <!-- PROFESSIONAL SUMMARY -->
+            <div class="mb-7">
+              <h3 class="font-sans font-bold text-xs uppercase tracking-wider text-[#0f2439] mb-2 flex items-center gap-2">
+                <i data-lucide="user" class="w-3.5 h-3.5 text-[#2563eb]"></i>
+                <span>Professional Summary</span>
+              </h3>
+              <p class="font-sans text-xs text-gray-700 leading-relaxed">
+                Creative and detail-oriented Web Designer &amp; Shopify Developer with 4.6 years of experience in designing and developing responsive, user-friendly websites and high-converting Shopify stores. Skilled in HTML, CSS, JavaScript, Shopify, and modern design tools. Passionate about delivering high-quality work that meets client expectations and drives business growth.
+              </p>
+            </div>
+
+            <!-- EXPERIENCE -->
+            <div class="mb-7">
+              <h3 class="font-sans font-bold text-xs uppercase tracking-wider text-[#0f2439] mb-3 flex items-center gap-2">
+                <i data-lucide="briefcase" class="w-3.5 h-3.5 text-[#2563eb]"></i>
+                <span>Experience</span>
+              </h3>
+
+              <div class="relative pl-5 border-l-2 border-[#2563eb] pb-2">
+                <div class="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-[#2563eb]"></div>
+                
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+                  <h4 class="font-bold text-sm text-[#0f2439]">
+                    Web Designers &amp; Shopify Developer
+                  </h4>
+                  <span class="text-[11px] font-semibold text-gray-500">Jan 2021 — Present &nbsp;(4.6 Years)</span>
+                </div>
+                
+                <div class="text-xs font-semibold text-[#2563eb] mb-2">
+                  Webskitters Technology Solutions Pvt Ltd
+                </div>
+
+                <ul class="text-[11px] text-gray-700 space-y-1 leading-relaxed list-disc list-outside pl-3">
+                  <li>Design and develop responsive websites using HTML, CSS, SCSS, Bootstrap, JavaScript, and jQuery.</li>
+                  <li>Develop and customize Shopify themes, sections, and templates as per client requirements.</li>
+                  <li>Convert Figma/PSD designs into pixel-perfect, fully responsive websites and Shopify stores.</li>
+                  <li>Integrate and configure third-party apps and customize Shopify functionality to enhance store performance.</li>
+                  <li>Collaborate with designers and developers to deliver high-quality projects on time.</li>
+                  <li>Ensure website speed optimization, cross-browser compatibility, and SEO best practices.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- EDUCATION -->
+            <div class="mb-7">
+              <h3 class="font-sans font-bold text-xs uppercase tracking-wider text-[#0f2439] mb-3 flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-[#2563eb]"></i>
+                <span>Education</span>
+              </h3>
+
+              <div class="space-y-3 text-xs pl-2">
+                <div class="flex items-start gap-4">
+                  <span class="font-bold text-[#0f2439] w-12 text-xs">2018</span>
+                  <div>
+                    <strong class="text-gray-900 block text-xs">Gobardanga High School</strong>
+                    <span class="text-gray-600 text-[11px]">Higher Secondary (58.42%)</span>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <span class="font-bold text-[#0f2439] w-12 text-xs">2020</span>
+                  <div>
+                    <strong class="text-gray-900 block text-xs">Iripala Krishna Mohan Institute</strong>
+                    <span class="text-gray-600 text-[11px]">Secondary Education (66.80%)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PROJECTS & WHAT I BUILD (Dual Column Box from CV) -->
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 mb-7">
+              
+              <!-- Projects List -->
+              <div class="sm:col-span-7">
+                <h3 class="font-sans font-bold text-xs uppercase tracking-wider text-[#0f2439] mb-3 flex items-center gap-2">
+                  <i data-lucide="layout" class="w-3.5 h-3.5 text-[#2563eb]"></i>
+                  <span>Projects</span>
+                </h3>
+
+                <ul class="space-y-2 text-xs font-sans">
+                  <li>
+                    <a href="https://brook37.com/" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1.5 font-medium">
+                      <span>• https://brook37.com</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://myracle.co.uk/" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1.5 font-medium">
+                      <span>• https://myracle.co.uk</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://kranzle-pump.myshopify.com/?pb=0" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1.5 font-medium">
+                      <span>• https://kranzle-pump.myshopify.com</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://artisancarat.com" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1.5 font-medium">
+                      <span>• https://artisancarat.com</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://amarra.com" target="_blank" class="text-blue-600 hover:underline flex items-center gap-1.5 font-medium">
+                      <span>• https://amarra.com</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- What I Build Card (Light Blue Card) -->
+              <div class="sm:col-span-5 bg-[#f0f6ff] border border-blue-200 rounded-xl p-4">
+                <h4 class="font-sans font-bold text-xs uppercase text-[#1e40af] mb-3 flex items-center gap-1.5">
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-blue-500 text-blue-500"></i>
+                  <span>What I Build</span>
+                </h4>
+                <ul class="text-xs text-gray-700 space-y-1.5">
+                  <li class="flex items-center gap-2">
+                    <span class="text-blue-600 font-bold">✔</span>
+                    <span>Shopify Stores</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-blue-600 font-bold">✔</span>
+                    <span>Custom Websites</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-blue-600 font-bold">✔</span>
+                    <span>Landing Pages</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-blue-600 font-bold">✔</span>
+                    <span>E-commerce Solutions</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+            <!-- CERTIFICATIONS & TOOLS -->
+            <div class="mb-7 border-t border-gray-200 pt-5">
+              <h3 class="font-sans font-bold text-xs uppercase tracking-wider text-[#0f2439] mb-3 flex items-center gap-2">
+                <i data-lucide="settings" class="w-3.5 h-3.5 text-[#2563eb]"></i>
+                <span>Certifications &amp; Tools</span>
+              </h3>
+
+              <div class="flex flex-wrap items-center gap-2 font-mono text-[11px]">
+                <span class="px-2.5 py-1 rounded bg-orange-100 text-orange-800 font-semibold border border-orange-200">HTML5</span>
+                <span class="px-2.5 py-1 rounded bg-blue-100 text-blue-800 font-semibold border border-blue-200">CSS3</span>
+                <span class="px-2.5 py-1 rounded bg-purple-100 text-purple-800 font-semibold border border-purple-200">Bootstrap</span>
+                <span class="px-2.5 py-1 rounded bg-yellow-100 text-yellow-800 font-semibold border border-yellow-200">JavaScript</span>
+                <span class="px-2.5 py-1 rounded bg-sky-100 text-sky-800 font-semibold border border-sky-200">jQuery</span>
+                <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 font-semibold border border-emerald-200">Shopify</span>
+                <span class="px-2.5 py-1 rounded bg-pink-100 text-pink-800 font-semibold border border-pink-200">Figma</span>
+                <span class="px-2.5 py-1 rounded bg-indigo-100 text-indigo-800 font-semibold border border-indigo-200">Photoshop</span>
+              </div>
+            </div>
+
+            <!-- DECLARATION & SIGNATURE -->
+            <div class="border-t border-gray-200 pt-5 flex items-end justify-between">
+              <div>
+                <h4 class="font-sans font-bold text-[11px] uppercase tracking-wider text-[#0f2439] mb-1">
+                  Declaration
+                </h4>
+                <p class="font-sans text-[10px] text-gray-500 italic max-w-xs">
+                  I hereby declare that the above information is true and correct to the best of my knowledge.
+                </p>
+              </div>
+
+              <!-- Signature -->
+              <div class="text-right">
+                <div class="font-serif italic text-lg text-gray-800 font-bold mb-0.5 tracking-tight">
+                  Jayanta Barui
+                </div>
+                <div class="font-sans text-[10px] font-bold text-gray-900 uppercase tracking-widest">
+                  JAYANTA BARUI
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </main>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================================
+         Section 05: Contact (Direct Contact Actions - No Clutter)
+         =================================================================== -->
+    <section id="contact" class="relative py-32 px-8 sm:px-14 lg:px-20 max-w-6xl mx-auto border-t border-white/10">
+      
+      <div class="max-w-3xl">
+        <div class="font-mono text-xs text-hw-accent tracking-widest uppercase mb-3">04 // Say Hello</div>
+        <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-6 decoder-heading" data-text="Get In Touch">
+          Get In Touch
+        </h2>
+
+        <p class="font-mono text-sm sm:text-base text-hw-muted leading-relaxed mb-10 max-w-xl">
+          Looking for a seasoned <strong class="text-white">Shopify Developer</strong> or <strong class="text-white">Web Designer</strong> to build your e-commerce store or custom responsive website? Let's discuss your project today.
+        </p>
+
+        <!-- Direct Contact Info Cards from CV -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 font-mono text-xs">
+          
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            <span class="text-hw-muted block text-[10px] uppercase mb-1">Direct Phone</span>
+            <div class="text-white font-semibold flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-hw-neon"></i>
+              <a href="tel:6296314279" class="hover:text-hw-accent transition-colors">+91 6296314279</a>
+            </div>
+            <div class="text-hw-muted text-[11px] mt-0.5">Alt: +91 8597826583</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            <span class="text-hw-muted block text-[10px] uppercase mb-1">Email Addresses</span>
+            <div class="text-white font-semibold flex items-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-hw-accent"></i>
+              <a href="mailto:jayantabarui26@gmail.com" class="hover:text-hw-accent transition-colors">jayantabarui26@gmail.com</a>
+            </div>
+            <div class="text-hw-muted text-[11px] mt-0.5">jayantawts123@gmail.com</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 sm:col-span-2">
+            <span class="text-hw-muted block text-[10px] uppercase mb-1">Location</span>
+            <div class="text-white flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-hw-accent"></i>
+              <span>Basakpara, Nandan Nagar, Belgharia, Kolkata - 700083, West Bengal, India</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Direct Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="mailto:jayantabarui26@gmail.com" class="hw-btn-primary">
+            <span>Send Email</span>
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </a>
+
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jayantabarui26@gmail.com&su=Project%20Inquiry%20-%20Web%20Design" target="_blank" rel="noopener noreferrer" class="hw-btn-secondary">
+            <span>Open in Gmail</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+
+          <a href="https://wa.me/916296314279" target="_blank" rel="noopener noreferrer" class="hw-btn-secondary">
+            <span>WhatsApp</span>
+            <i data-lucide="message-circle" class="w-4 h-4 text-hw-neon"></i>
+          </a>
+
+          <a href="https://linkedin.com/in/jayanta-barui" target="_blank" rel="noopener noreferrer" class="hw-btn-secondary">
+            <span>LinkedIn</span>
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         Footer (Live Clock & Back To Top)
+         =================================================================== -->
+    <footer class="border-t border-white/10 py-10 px-8 sm:px-14 lg:px-20 bg-hw-black/75 backdrop-blur-md text-hw-muted font-mono text-xs">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+        
+        <div>
+          <span>&copy; 2026 Jayanta Barui. Crafted with care &amp; Google Antigravity.</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-hw-accent animate-pulse"></span>
+          <span id="live-clock">LOCAL // --:--:-- IST</span>
+        </div>
+
+        <a href="#intro" class="hover:text-white transition-colors flex items-center gap-2 uppercase tracking-wider">
+          <span>Back to Top</span>
+          <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
